@@ -45,3 +45,43 @@ switch (choice.toLowerCase()) {
 console.log(premiummFeatures);
 console.log(premiummPrices);
 console.log(premiummBugs);
+
+//Етап 5
+costOfGame = 0;
+
+for (var price of prices) {
+    totalCost += price;
+}
+
+if (months > 12) {
+    totalCost *= 1.15;
+} else if (months < 6) {
+    totalCost *= 0.9;
+}
+
+var patchNotes = "";
+
+for (var i = 0; i < features.length; i++) {
+    patchNotes += `• ${features[i]} | Ціна: ${prices[i]}$ | Багів: ${bugs[i]}\n`;
+}
+
+if (budget >= totalCost) {
+    alert(
+`Реліз у Steam успішний!
+
+Студія: ${studioName}
+Гра: ${gameName}
+
+Витрати: ${totalCost.toFixed(2)}$
+Залишок: ${(budget - totalCost).toFixed(2)}$
+
+Патч-ноут:
+${patchNotes}`
+    );
+} else {
+    alert(
+`Студія збанкрутувала
+
+Борг: ${(totalCost - budget).toFixed(2)}$`
+    );
+}
